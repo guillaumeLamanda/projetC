@@ -1,0 +1,13 @@
+CCFLAGS=-W -Wall -Werror
+
+prog : pile.o main.o
+	gcc pile.o main.o -o prog
+
+pile.o : pile.h pile.c
+	gcc $(CCFLAGS) -c pile.c -o pile.o
+
+main.o : main.c pile.h
+	gcc $(CCFLAGS) -c main.c -o main.o
+
+clean :
+	rm -rf *.o prog
