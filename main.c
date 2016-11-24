@@ -2,54 +2,33 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "pile.h"
+#include "zpixel.h"
 
 int main(void) {
+	// Init
+	printf("Creation des zpixels...");
+	zpixel_t * zpix1 = zpixel_creer(0, 0, 3);
+	zpixel_t * zpix2 = zpixel_creer(0, 0, 3);
+	if(zpix1 != NULL && zpix2 != NULL){
+		printf("OK\n");
+		printf("Initialisation des zpixel...\n");
+		zpixel_initialiser(zpix1, 123,230,12);
+		zpixel_initialiser(zpix2, 12,120,80);
 
-	printf("Declaration de la pile ... ");
-	pile_t* premiere_pile; //declaration de la pile
-	printf("OK\n");
+		// zp1
+		printf("Zpixel1 :\n\tr: %d\n\tg: %d\n\tb: %d\n", zpix1->rgb.r, zpix1->rgb.g, zpix1->rgb.b);
+		printf("\tMax : %d\n\tMin : %d\n", max(zpix1), min(zpix1));
+		// zp2
+		printf("Zpixel2 :\n\tr: %d\n\tg: %d\n\tb: %d\n", zpix2->rgb.r, zpix2->rgb.g, zpix2->rgb.b);
+		printf("\tMax : %d\n\tMin : %d\n", max(zpix2), min(zpix2));
 
-	printf("Creation de la pile ... ");
-	premiere_pile = pile_creer(10); //creation de la pile avec 10 places
-	printf("OK\n\n");
+		// Distance
+		printf("Distance : %lf\n", distance(zpix1, zpix2));
+	}
+	else {
+		printf("Erreur\n");
+	}
 
-
-	pile_places_occupees(premiere_pile);
-	pile_places_libres(premiere_pile);
-
-  printf("\n");
-
-  int valeur = 5 ;
-  printf(" -- On empile\n");
-  pile_empiler(premiere_pile, &valeur);
-  valeur = 65;
-  pile_empiler(premiere_pile, &valeur);
-
-  pile_places_occupees(premiere_pile);
-	pile_places_libres(premiere_pile);
-
-  void * el = NULL ;
-  printf("Definition nouvel el OK\n");
-  pile_initialiser_iterateur(premiere_pile);
-  printf("Definition iterateur OK\n");
-
-  printf("\n On parcours la pile\n");
-  while(pile_obtenir_element_suivant(premiere_pile, &el) == 0){
-    printf("El : %p\n", &el);
-  }
-
-  printf("\n -- On dépile \n");
-  pile_depiler(premiere_pile);
-
-  pile_places_occupees(premiere_pile);
-	pile_places_libres(premiere_pile);
-
-  printf("\nLa pile possède %d places libres et %d places occupees\n", pile_places_libres(premiere_pile), pile_places_occupees(premiere_pile));
-
-	printf("\nSuppression de la pile ... ");
-	pile_detruire(premiere_pile); //detruire la pile
-	printf("OK\n");
 
 	return 0;
 }
