@@ -28,13 +28,11 @@ void pile_initialiser(pile_t * p){
 
 int pile_places_occupees(const pile_t * p){
   int places_occupees = p->nb_elements;
-	printf(" - Places occupees : %d\n", places_occupees);
 	return places_occupees;
 }
 
 int pile_places_libres(const pile_t * p){
   int places_libres = (p->taille_pile) - (p->nb_elements);
-	printf(" - Places libres : %d\n", places_libres);
 	return places_libres;
 }
 
@@ -62,7 +60,7 @@ int pile_depiler2(pile_t * p, void ** el){
 // Retourne -1 si la pile est vide, 0 sinon
 int pile_empiler(pile_t * p, const void * el){
   if(p->nb_elements== p->taille_pile) return -1 ;
-  p->el[p->nb_elements] = &el ;
+  p->el[p->nb_elements] = (void*) el ;
   p->nb_elements++;
   return 0;
 }
