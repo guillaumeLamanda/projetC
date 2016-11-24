@@ -1,7 +1,7 @@
 CCFLAGS=-W -Wall -Werror
 
 prog : zpixel.o pile.o main.o
-	gcc zpixel.o pile.o main.o -o prog
+	gcc zpixel.o pile.o main.o -o prog -lm
 
 zpixel.o: zpixel.h zpixel.c
 	gcc $(CCFLAGS) -c zpixel.c -o zpixel.o

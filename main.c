@@ -20,15 +20,16 @@ int main(void) {
 		printf("\tMax : %d\n\tMin : %d\n", max(zpix1), min(zpix1));
 		// zp2
 		printf("Zpixel2 :\n\tr: %d\n\tg: %d\n\tb: %d\n", zpix2->rgb.r, zpix2->rgb.g, zpix2->rgb.b);
-		printf("\tMax : %d\n\tMin : %d\n", max(zpix2), min(zpix2));
+		printf("\tMax : %d\n\tMin : %d\n\n", max(zpix2), min(zpix2));
 
 		// Distance
 		printf("Distance : %lf\n", distance(zpix1, zpix2));
+
+
 	}
 	else {
 		printf("Erreur\n");
 	}
-
 
 	return 0;
 }

@@ -73,13 +73,13 @@ double saturation(zpixel_t *zp){
   return res ;
 }
 
-// double distance(zpixel_t * zp1, zpixel_t * zp2){
-//   double res = 0.0 ;
-//   if(zp1 != NULL && zp2 != NULL){
-//     double res1 = pow((zp2->position.r - zp1->position.r), 2);
-//     double res2 = pow((zp2->position.g - zp1->position.g), 2);
-//     double res3 = pow((zp2->position.b - zp1->position.b), 2);
-//     res = sqrt(res1+res2+res3);
-//   }
-//   return res ;
-// }
+double distance(zpixel_t * zp1, zpixel_t * zp2){
+  double res = 0.0 ;
+  if(zp1 != NULL && zp2 != NULL){
+    double res1 = pow((zp2->rgb.r - zp1->rgb.r), 2);
+    double res2 = pow((zp2->rgb.g - zp1->rgb.g), 2);
+    double res3 = pow((zp2->rgb.b - zp1->rgb.b), 2);
+    res = sqrt(res1+res2+res3);
+  }
+  return res ;
+}

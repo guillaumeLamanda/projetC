@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct zpixel
 {
@@ -27,3 +28,13 @@ int min(zpixel_t *zp);
 int max(zpixel_t *zp);
 
 double distance(zpixel_t * zp1, zpixel_t * zp2);
+
+// Structure image
+typedef struct image
+{
+  int nblignes ;
+  int nbcols ;
+  // Si nblignes * nbcols n'est pas un multiple de 4,
+  // rowtrip est ajouté pour y parvenir
+  int rowstrip ;
+} image_t ;
