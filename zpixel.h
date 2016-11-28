@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdint.h>
 
 typedef struct zpixel
 {
@@ -10,9 +11,9 @@ typedef struct zpixel
     int x; int y;
   } position;
   struct {
-    int r;
-    int g;
-    int b;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
   } rgb;
   double degradFact ; // Facteur de dégradation
 } zpixel_t;
@@ -28,6 +29,8 @@ int min(zpixel_t *zp);
 int max(zpixel_t *zp);
 
 double distance(zpixel_t * zp1, zpixel_t * zp2);
+
+double saturation(zpixel_t *zp);
 
 // Structure image
 typedef struct image

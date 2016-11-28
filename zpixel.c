@@ -63,14 +63,19 @@ double saturation(zpixel_t *zp){
     double lum = luminosite(zp);
     int m = max(zp);
     int n = min(zp);
-    if(lum<128){
-      res = 255 * ((m-n)/(m+n)) ;
+    int maj = m-n;
+    int min = m+n;
+    if(lum == 0){
+
+    }
+    else if(lum<128){
+      res =(double) maj/min ;
     }
     else{
-      res = 255 * ((m-n)/(511-(m+n)));
+      res = (double) (maj/(511-min));
     }
   }
-  return res ;
+  return res*255 ;
 }
 
 double distance(zpixel_t * zp1, zpixel_t * zp2){
