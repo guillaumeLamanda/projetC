@@ -6,6 +6,8 @@
 
 #include "zpixel.h"
 
+
+// ----------------- ZPIXEL -----------------------
 zpixel_t * zpixel_creer(int x, int y, int size){
   zpixel_t * zp = (struct zpixel*)malloc(sizeof(zp));
   if(zp == NULL) return NULL ;
@@ -87,4 +89,62 @@ double distance(zpixel_t * zp1, zpixel_t * zp2){
     res = sqrt(res1+res2+res3);
   }
   return res ;
+}
+
+void projection(zpixel_t * zp, image_t * img){
+  int j,i ;
+  // printf("Taille du zpix : %d", zp->size);
+  for(i=0;i<zp->size;i++){
+    for(j=0;j<zp->size;j++){
+      // printf("position x: %d\nposition y:%d\n", zp->position.x, zp->position.y);
+      setPixel(img, zp->position.x+i, zp->position.y+j, zp->rgb.r,zp->rgb.g,zp->rgb.b);
+    }
+  }
+}
+
+// ----------------- PIXEL -----------------------
+
+pixel_t * pixel_creer(uint8_t r, uint8_t g, uint8_t b){
+  pixel_t * pix = (struct pixel*)malloc(sizeof(pix));
+  pix->r=r;
+  pix->g=g;
+  pix->b=b;
+
+  return pix;
+}
+
+void setPixel(image_t* i, int x, int y, uint8_t r, uint8_t g, uint8_t b){
+  // ligne y ou se trouve x
+  // printf("Position : \n\trowstride:%d\n\ty:%d\n\tx:%d\n", i->rowstride, y, x);
+  // printf("Adresse du pixel a placer : %d", adresseXY);
+  // i->pixels[(i->rowstride * y) + x].r=r;
+  // i->pixels[(i->rowstride * y) + x].g=g;
+  // i->pixels[(i->rowstride * y) + x].b=b;
+  i->pixels[(i->rowstride * y) + x].r=r;
+  i->pixels[(i->rowstride * y) + x].g=g;
+  i->pixels[(i->rowstride * y) + x].b=b;
+}
+
+// ----------------- IMAGE -----------------------
+
+image_t * image_creer(int lignes, int colonnes, int rowstride){
+  image_t * img = (struct image*)malloc(sizeof(img));
+  if(img == NULL) return NULL ;
+  img->pixels = (pixel_t*)malloc(sizeof(colonnes*rowstride));
+  img->nblignes = lignes;
+  img->nbcols =colonnes;
+  img->rowstride = rowstride;
+  return img ;
+}
+
+void afficher_image(image_t * image){
+  for(int j=0; j<image->nbcols; j++){
+    for(int i=0; i<image->rowstride; i++){
+      if(i<image->nblignes){
+        printf(" (%d,%d,%d) |", image->pixels->r,image->pixels->g,image->pixels->b);
+      }
+      image->pixels ++ ;
+    }
+    printf("\n");
+  }
 }

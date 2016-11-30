@@ -11,12 +11,12 @@ int main(void) {
 	zpixel_t * zpix2 = zpixel_creer(0, 0, 3);
 	zpixel_t * zpix3 = zpixel_creer(0, 0, 3);
 
-	if(zpix1 != NULL && zpix2 != NULL){
+	if(zpix1 != NULL && zpix2 != NULL ){
 		printf("OK\n");
 		printf("Initialisation des zpixel...\n");
 		zpixel_initialiser(zpix1, 255,255,255);
 		zpixel_initialiser(zpix2, 0,0,0);
-		zpixel_initialiser(zpix3, 12,120,80);
+		zpixel_initialiser(zpix3, 15,157,232);
 
 		// zp1
 		printf("Zpixel1 blanc :\n\tr: %d\n\tg: %d\n\tb: %d\n", zpix1->rgb.r, zpix1->rgb.g, zpix1->rgb.b);
@@ -32,6 +32,21 @@ int main(void) {
 
 		// Distance
 		printf("Distance : %lf\n", distance(zpix1, zpix2));
+
+		// Enregistrement des pixels
+		// pixel_t pixels[24] ;
+		image_t * image1 = image_creer(8, 8, 25);
+
+		printf("----- Image avant projection : \n");
+		afficher_image(image1);
+
+		// zpix3->position.x=3;
+		// zpix3->position.y=3;
+
+		projection(zpix3,image1);
+
+		printf("----- Image apres projection : \n");
+		afficher_image(image1);
 	}
 	else {
 		printf("Erreur\n");
