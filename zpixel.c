@@ -130,7 +130,8 @@ void setPixel(image_t* i, int x, int y, uint8_t r, uint8_t g, uint8_t b){
 image_t * image_creer(int lignes, int colonnes, int rowstride){
   image_t * img = (struct image*)malloc(sizeof(img));
   if(img == NULL) return NULL ;
-  img->pixels = (pixel_t*)malloc(sizeof(colonnes*rowstride));
+  img->pixels = (pixel_t*)malloc(lignes*rowstride);
+  if(img->pixels == NULL) free(img) ; return NULL ;
   img->nblignes = lignes;
   img->nbcols =colonnes;
   img->rowstride = rowstride;
@@ -138,12 +139,13 @@ image_t * image_creer(int lignes, int colonnes, int rowstride){
 }
 
 void afficher_image(image_t * image){
+  int cpt = 0;
   for(int j=0; j<image->nbcols; j++){
     for(int i=0; i<image->rowstride; i++){
       if(i<image->nblignes){
-        printf(" (%d,%d,%d) |", image->pixels->r,image->pixels->g,image->pixels->b);
+        printf(" (%d,%d,%d) |", image->pixels[cpt].r,image->pixels[cpt].g,image->pixels[cpt].b);
       }
-      image->pixels ++ ;
+      cpt++;
     }
     printf("\n");
   }

@@ -9,7 +9,7 @@ int main(void) {
 	printf("Creation des zpixels...");
 	zpixel_t * zpix1 = zpixel_creer(0, 0, 3);
 	zpixel_t * zpix2 = zpixel_creer(0, 0, 3);
-	zpixel_t * zpix3 = zpixel_creer(0, 0, 3);
+	zpixel_t * zpix3 = zpixel_creer(2, 2, 3);
 
 	if(zpix1 != NULL && zpix2 != NULL ){
 		printf("OK\n");
