@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
-#include <glib.h>
+#include <glibc.h>
 // ---------------- ARBRE ------------------------
 
 typedef struct arbre {
